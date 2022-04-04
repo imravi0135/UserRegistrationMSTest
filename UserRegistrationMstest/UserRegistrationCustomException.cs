@@ -23,6 +23,8 @@ namespace UserRegistrationMstest
                 Email_Contain_Symbol,
                 Mobile_Atleast_TenDigit,
                 Mobile_Number_Empty,
+                Password_Empty,
+                Password_Min_Eight_Char,
             }
             public UserValidationCustomException(ExceptionType type, string message) : base(message)
             {
