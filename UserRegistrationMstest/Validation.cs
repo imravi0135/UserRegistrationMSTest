@@ -12,6 +12,7 @@ namespace UserRegistrationMstest
     {
         public Regex FirstNameRegex = new Regex("^[A-Z]{1}[A-Za-z]{2,}$");
         public Regex LastNameRegex = new Regex("^[A-Z]{1}[A-Za-z]{2,}$");
+        public Regex EmailRegex = new Regex("^[A-Za-z]+([.+-][A-Za-z 0-9]+)*@[A-Za-z 0-9]+.[A-Za-z]([.[A-Za-z]{2,})?$");
         public string ValidFirstName(string firstName)
         {
             bool result = false;
@@ -69,5 +70,36 @@ namespace UserRegistrationMstest
             }
             return "Last Name is Invalid";
         }
+        public string ValidEmail(string email)
+        {
+            bool result = false;
+            if (EmailRegex.IsMatch(email)) { result = true; }
+            try
+            {
+                if (result == false)
+                {
+                    if (email.Equals(string.Empty))
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Email_Empty,
+                            "Email should not be empty");
+                    else if (email.Length < 7)
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Email_With_Min_Char,
+                            "Email should contain atleast seven character");
+                    else if (!email.Any(char.IsLetterOrDigit))
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Email_Contains_SpecialChar,
+                            "Email should contain special characters");
+                    else if (!email.Contains('@'))
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Email_Contain_Symbol,
+                            "Email should contains @ Symbol");
+                }
+                else return "Email is Valid";
+            }
+            catch (UserValidationCustomException exception)
+            {
+                throw exception;
+            }
+            return "Email is Invalid";
+        }
+
     }
 }
+
