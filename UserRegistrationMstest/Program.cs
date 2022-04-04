@@ -12,6 +12,7 @@ namespace UserRegistrationMSTesting
             do
             {
                 Console.WriteLine("Choose 1: First name validation");
+                Console.WriteLine("Choose 2: Last name validation");
 
                 try
                 {
@@ -22,6 +23,11 @@ namespace UserRegistrationMSTesting
                             Console.WriteLine("Enter your First Name: ");
                             string input = Console.ReadLine();
                             userRegistration.ValidFirstName(input);
+                            break;
+                        case 2:
+                            Console.WriteLine("Enter your Last Name: ");
+                            input = Console.ReadLine();
+                            userRegistration.ValidLastName(input);
                             break;
                         default:
                             Console.WriteLine("Choose From the Options given above");
