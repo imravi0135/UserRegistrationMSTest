@@ -15,6 +15,7 @@ namespace UserRegistrationMstest
         public Regex EmailRegex = new Regex("^[A-Za-z]+([.+-][A-Za-z 0-9]+)*@[A-Za-z 0-9]+.[A-Za-z]([.[A-Za-z]{2,})?$");
         public Regex MobileNoRegex = new Regex("^[0-9]{2}[ ][5-9]{1}[0-9]{9}$");
         public Regex PasswordRegex = new Regex("^[a-zA-Z0-9]{8,}$");
+        public Regex PasswordRegex_2 = new Regex("^(?=.*[A-Z])[a-zA-Z0-9]{8,}$");
         public string ValidFirstName(string firstName)
         {
             bool result = false;
@@ -138,6 +139,29 @@ namespace UserRegistrationMstest
                     else if (password.Length < 8)
                         throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Password_Min_Eight_Char,
                             "Password should contain atleast eight characters");
+                }
+                else return "Password is Valid";
+            }
+            catch (UserValidationCustomException exception)
+            {
+                throw exception;
+            }
+            return "Password is Invalid";
+        }
+        public string ValidPasswordOneUpperCase(string password)
+        {
+            bool Password(string Password) => PasswordRegex_2.IsMatch(Password);
+            bool result = Password(password);
+            try
+            {
+                if (result == false)
+                {
+                    if (password.Equals(string.Empty))
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Password_Empty,
+                            "Password should not be empty");
+                    else if (!char.IsUpper(password[1]))
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Password_AtLeast_OneUpperCase,
+                            "Password should contain atleast one upper case character");
                 }
                 else return "Password is Valid";
             }

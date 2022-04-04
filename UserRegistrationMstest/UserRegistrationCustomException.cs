@@ -25,6 +25,7 @@ namespace UserRegistrationMstest
                 Mobile_Number_Empty,
                 Password_Empty,
                 Password_Min_Eight_Char,
+                Password_AtLeast_OneUpperCase,
             }
             public UserValidationCustomException(ExceptionType type, string message) : base(message)
             {

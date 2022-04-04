@@ -15,8 +15,8 @@ namespace UserRegistrationMSTesting
                 Console.WriteLine("Choose 2: Last name validation");
                 Console.WriteLine("Choose 3:Email Validation");
                 Console.WriteLine("Choose 4:Mobile Num Validation");
-                Console.WriteLine("Choose 5:Password");
-
+                Console.WriteLine("Choose 5:Password1");
+                Console.WriteLine("Choose 6:Password2");
                 try
                 {
                     options = int.Parse(Console.ReadLine());
@@ -46,6 +46,11 @@ namespace UserRegistrationMSTesting
                             Console.WriteLine("Enter Password: ");
                             input = Console.ReadLine();
                             userRegistration.ValidPasswordRuleOne(input);
+                            break;
+                        case 6:
+                            Console.WriteLine("Enter Password: ");
+                            input = Console.ReadLine();
+                            userRegistration.ValidPasswordRule_2(input);
                             break;
                         default:
                             Console.WriteLine("Choose From the Options given above");
