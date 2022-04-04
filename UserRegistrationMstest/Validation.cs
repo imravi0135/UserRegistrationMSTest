@@ -13,6 +13,7 @@ namespace UserRegistrationMstest
         public Regex FirstNameRegex = new Regex("^[A-Z]{1}[A-Za-z]{2,}$");
         public Regex LastNameRegex = new Regex("^[A-Z]{1}[A-Za-z]{2,}$");
         public Regex EmailRegex = new Regex("^[A-Za-z]+([.+-][A-Za-z 0-9]+)*@[A-Za-z 0-9]+.[A-Za-z]([.[A-Za-z]{2,})?$");
+        public Regex MobileNoRegex = new Regex("^[0-9]{2}[ ][5-9]{1}[0-9]{9}$");
         public string ValidFirstName(string firstName)
         {
             bool result = false;
@@ -98,6 +99,29 @@ namespace UserRegistrationMstest
                 throw exception;
             }
             return "Email is Invalid";
+        }
+        public string ValidPhoneNumber(string phoneNumber)
+        {
+            bool result = false;
+            if (MobileNoRegex.IsMatch(phoneNumber)) { result = true; }
+            try
+            {
+                if (result == false)
+                {
+                    if (phoneNumber.Equals(string.Empty))
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Mobile_Number_Empty,
+                            "Phone number should not be empty");
+                    else if (phoneNumber.Length < 10)
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Mobile_Atleast_TenDigit,
+                            "Phone number should contain atleast ten digits");
+                }
+                else return "Phone Number is Valid";
+            }
+            catch (UserValidationCustomException exception)
+            {
+                throw exception;
+            }
+            return "Phone number is Invalid";
         }
 
     }

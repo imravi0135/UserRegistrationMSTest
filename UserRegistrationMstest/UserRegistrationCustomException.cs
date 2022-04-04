@@ -21,8 +21,8 @@ namespace UserRegistrationMstest
                 Email_With_Min_Char,
                 Email_Contains_SpecialChar,
                 Email_Contain_Symbol,
-
-
+                Mobile_Atleast_TenDigit,
+                Mobile_Number_Empty,
             }
             public UserValidationCustomException(ExceptionType type, string message) : base(message)
             {

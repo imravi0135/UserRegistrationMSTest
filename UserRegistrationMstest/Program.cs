@@ -14,6 +14,7 @@ namespace UserRegistrationMSTesting
                 Console.WriteLine("Choose 1: First name validation");
                 Console.WriteLine("Choose 2: Last name validation");
                 Console.WriteLine("Email Validation");
+                Console.WriteLine("Mobile Num Validation");
 
                 try
                 {
@@ -34,6 +35,11 @@ namespace UserRegistrationMSTesting
                             Console.WriteLine("Enter your Email: ");
                             input = Console.ReadLine();
                             userRegistration.ValidEmail(input);
+                            break;
+                        case 4:
+                            Console.WriteLine("Enter your Mobile Number: ");
+                            input = Console.ReadLine();
+                            userRegistration.ValidMobile(input);
                             break;
                         default:
                             Console.WriteLine("Choose From the Options given above");
