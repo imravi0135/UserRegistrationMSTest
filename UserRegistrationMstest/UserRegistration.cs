@@ -16,6 +16,7 @@ namespace UserRegistrationMstest
         public Regex PasswordRegex = new Regex("^[a-zA-Z0-9]{8,}$");
         public Regex PasswordRegex_2 = new Regex("^(?=.*[A-Z])[a-zA-Z0-9]{8,}$");
         public Regex PasswordRegex_3 = new Regex("^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$");
+        public Regex PasswordRegex_4 = new Regex(@"^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9]{8,}$");
 
         public void ValidFirstName(string firstName)
         {
@@ -71,6 +72,13 @@ namespace UserRegistrationMstest
         {
             Console.WriteLine("Password - " + password);
             if (PasswordRegex_3.IsMatch(password))
+                Console.WriteLine($"{password} is valid");
+            else
+                Console.WriteLine($"{password} is Invalid");
+        }
+        public void ValidPasswordRule_4(string password)
+        {
+            if (PasswordRegex_4.IsMatch(password))
                 Console.WriteLine($"{password} is valid");
             else
                 Console.WriteLine($"{password} is Invalid");

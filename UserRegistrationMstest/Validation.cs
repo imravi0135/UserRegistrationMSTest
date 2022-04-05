@@ -17,6 +17,7 @@ namespace UserRegistrationMstest
         public Regex PasswordRegex = new Regex("^[a-zA-Z0-9]{8,}$");
         public Regex PasswordRegex_2 = new Regex("^(?=.*[A-Z])[a-zA-Z0-9]{8,}$");
         public Regex PasswordRegex_3 = new Regex("^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$");
+        public Regex PasswordRegex_4 = new Regex(@"^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9]{8,}$");
         public string ValidFirstName(string firstName)
         {
             bool result = false;
@@ -186,6 +187,29 @@ namespace UserRegistrationMstest
                     else if (!char.IsUpper(password[1]))
                         throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Password_AtLeast_OneNumber,
                             "Password should contain atleast one Digit");
+                }
+                else return "Password is Valid";
+            }
+            catch (UserValidationCustomException exception)
+            {
+                throw exception;
+            }
+            return "Password is Invalid";
+        }
+        public string ValidPasswordAtLeastOneSpecialChar(string password)
+        {
+            bool Password(string Password) => PasswordRegex_4.IsMatch(Password);
+            bool result = Password(password);
+            try
+            {
+                if (result == false)
+                {
+                    if (password.Equals(string.Empty))
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Password_Empty,
+                            "Password should not be empty");
+                    else if (!char.IsUpper(password[1]))
+                        throw new UserValidationCustomException(UserValidationCustomException.ExceptionType.Password_OneSpecial_Char,
+                            "Password should contain atleast one special character");
                 }
                 else return "Password is Valid";
             }

@@ -18,6 +18,7 @@ namespace UserRegistrationMSTesting
                 Console.WriteLine("Choose 5:Password1");
                 Console.WriteLine("Choose 6:Password2");
                 Console.WriteLine("Choose 7:Password3");
+                Console.WriteLine("choose 8:Password4");
                 try
                 {
                     options = int.Parse(Console.ReadLine());
@@ -57,6 +58,11 @@ namespace UserRegistrationMSTesting
                             Console.WriteLine("Enter Password: ");
                             input = Console.ReadLine();
                             userRegistration.ValidPasswordRule_3(input);
+                            break;
+                        case 8:
+                            Console.WriteLine("Enter Password: ");
+                            input = Console.ReadLine();
+                            userRegistration.ValidPasswordRule_4(input);
                             break;
                         default:
                             Console.WriteLine("Choose From the Options given above");
