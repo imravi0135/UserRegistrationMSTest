@@ -78,7 +78,22 @@ namespace UserRegistrationTest
         public void ValidPassWord_2()
         {
             string result = null;
-            string expected = "Password should contain atleast eight characters";
+            string expected = "Password should contain atleast eight characters and one UpperCase";
+            try
+            {
+                string password = "passwords";
+                result = validation.ValidPasswordEightChars(password);
+            }
+            catch (Exception)
+            {
+                Assert.AreEqual(expected, result);
+            }
+        }
+        [Test]
+        public void ValidPassWord_3()
+        {
+            string result = null;
+            string expected = "Password should contain atleast eight characters,one Upper Case and one number";
             try
             {
                 string password = "passwords";
